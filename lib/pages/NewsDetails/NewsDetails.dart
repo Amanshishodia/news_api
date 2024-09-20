@@ -81,12 +81,14 @@ class NewsdetailsPage extends StatelessWidget {
                     SizedBox(
                       width: 10,
                     ),
-                    Text(
-                      userName,
-                      style: TextStyle(
-                          fontSize: 18,
-                          color:
-                              Theme.of(context).colorScheme.secondaryContainer),
+                    Flexible(
+                      child: Text(
+                        userName,
+                        style: TextStyle(
+                            fontSize: 18,
+                            color:
+                                Theme.of(context).colorScheme.secondaryContainer),
+                      ),
                     ),
                   ],
                 ),
