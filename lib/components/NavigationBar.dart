@@ -74,32 +74,7 @@ class MyBottomNavigation extends StatelessWidget {
                         size: 25,
                       )),)
                 ),
-                InkWell(
-                  onTap: () {
-                    controller.index.value = 2;
-                  },
-                  child: Obx(()=>AnimatedContainer(
-                     duration: Duration(milliseconds: 300),
-                    curve: Curves.bounceInOut,
-                      height: 40,
-                      width: 40,
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        
-                           color:controller.index.value == 2
-                                  ? Theme.of(context).colorScheme.primary
-                                  : null,
-                          borderRadius: BorderRadius.circular(100)),
-                      child: Icon(
-                        Icons.settings,
-                            color:controller.index.value == 2
-                                ? Theme.of(context).colorScheme.background
-                                : Theme.of(context)
-                                    .colorScheme
-                                    .secondaryContainer,
-                        size: 25,
-                      )),)
-                ),
+               
               ],
             ),
           ),

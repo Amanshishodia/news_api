@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:newsapp/controller/NewsController.dart';
 
 class NewsdetailsPage extends StatelessWidget {
   final String imagePath;
@@ -8,10 +10,17 @@ class NewsdetailsPage extends StatelessWidget {
   final String description;
   final String time;
 
-  const NewsdetailsPage({super.key,required this.description,required this.imagePath,required this.time,required this.title,required this.userName});
+  const NewsdetailsPage(
+      {super.key,
+      required this.description,
+      required this.imagePath,
+      required this.time,
+      required this.title,
+      required this.userName});
 
   @override
   Widget build(BuildContext context) {
+    NewsController newsController = Get.put(NewsController());
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -55,7 +64,7 @@ class NewsdetailsPage extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                     time,
+                      time,
                       style: Theme.of(context).textTheme.labelSmall,
                     )
                   ],
@@ -81,6 +90,37 @@ class NewsdetailsPage extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(height: 20,),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    children: [
+                      Obx(() => newsController.isSpeaking.value
+                          ? IconButton(
+                              onPressed: () {
+                                newsController.stop();
+                              },
+                              icon: Icon(Icons.stop,size: 50,))
+                          : IconButton(
+                              onPressed: () {
+                                newsController
+                                    .speak(description ?? "No Description");
+                              },
+                              icon: Icon(
+                                Icons.play_arrow_rounded,
+                                size: 50,
+                              ))),
+                      Expanded(
+                          child: Lottie.asset(
+                        'Asset/Animation/wave.json',
+                        height: 70,
+                        animate: newsController.isSpeaking.value,
+                      ))
+                    ],
+                  ),
+                ),
                 SizedBox(
                   height: 20,
                 ),
@@ -88,7 +128,7 @@ class NewsdetailsPage extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                       description,
+                        description,
                         style: TextStyle(
                             fontSize: 18,
                             color: Theme.of(context)

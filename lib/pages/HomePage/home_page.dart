@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:newsapp/components/NavigationBar.dart';
 import 'package:newsapp/components/news_time_loader.dart';
 import 'package:newsapp/components/trending_loader.dart';
+import 'package:newsapp/pages/ArticlePage/articlePage.dart';
 import 'package:newsapp/pages/HomePage/widgets/newsTile.dart';
 import 'package:newsapp/pages/HomePage/widgets/trendingCard.dart';
 import 'package:newsapp/pages/NewsDetails/NewsDetails.dart';
@@ -133,9 +134,14 @@ class _HomePageState extends State<HomePage> {
                     "News for You",
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  Text(
-                    "See All",
-                    style: Theme.of(context).textTheme.labelSmall,
+                  InkWell(
+                     onTap: () {
+                      Get.to(Articlepage());
+                    },
+                    child: Text(
+                      "See All",
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
                   )
                 ],
               ),
@@ -187,16 +193,26 @@ class _HomePageState extends State<HomePage> {
                     "Bussiness News",
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  Text(
-                    "See All",
-                    style: Theme.of(context).textTheme.labelSmall,
+                  InkWell(
+                    onTap: () {
+                      Get.to(Articlepage());
+                    },
+                    child: Text(
+                      "See All",
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
                   )
                 ],
               ),
               const SizedBox(height: 20),
               Obx(() {
                 if (newsController.isBussinessLoading.value) {
-                  return const Center(child: Column(children:[ NewsTimeLoader(), NewsTimeLoader(), NewsTimeLoader()]));
+                  return const Center(
+                      child: Column(children: [
+                    NewsTimeLoader(),
+                    NewsTimeLoader(),
+                    NewsTimeLoader()
+                  ]));
                 } else {
                   return SingleChildScrollView(
                     scrollDirection: Axis.vertical,
