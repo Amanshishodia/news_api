@@ -59,7 +59,8 @@ class NewsController extends GetxController {
         print('Error: ${response.statusCode}');
       }
     } catch (e) {
-      print('Exception: $e');
+      print('=================${e.toString()}');
+     
     }
     isNewsLoading.value = false;
   }
@@ -77,7 +78,7 @@ class NewsController extends GetxController {
         var articles = body["articles"];
 
         for (var news in articles) {
-          allNewsList.add(NewsModel.fromJson(news));
+          bussinessNews.add(NewsModel.fromJson(news));
         }
       } else {
         print('Error: ${response.statusCode}');
